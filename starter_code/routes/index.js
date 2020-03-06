@@ -4,7 +4,7 @@ const router  = express.Router();
 const mongoose = require('mongoose');
 const Movie = require('../models/Movie.js');
 
-
+//connect to mongooseDB and initialize database
 mongoose
 .connect('mongodb://localhost/movieDB', {
   useCreateIndex: true,
@@ -15,24 +15,12 @@ mongoose
 .catch(err => console.error('Error connecting to mongo', err));
 
   /* GET home page */
+//Set up home page. This renders the homepage "/"
 router.get('/', (req, res, next) => {
   res.render('index.hbs', { img:'/images/cinema.jpg'} );
 });
 
-// router.get('/about', (req, res, next) => {
-//   res.render('about.hbs', { 
-//       greeting: "Welcome to Spanish Class", 
-//       verbs: ['correr', 'saltar', 'caminar', 'estudiar', 'bailar', 'matar'],
-//       words: [{  adjective: 'lindo'}, {  adjective: 'fao'}, {  adjective: 'bonito'}, {  adjective: 'chismosa'}],
-//     })
-// })
-
-
-// router.get('/newpage', (req, res, next) => {
-//   res.render('newpage')
-// })
-
-
+//Iteration 3: List movies on movies page
 router.get('/movies', (req, res, next) => {
   Movie.find()
     .then(eachMovie => {
@@ -44,8 +32,9 @@ router.get('/movies', (req, res, next) => {
     })
 });
 
+//Iteration 4: open up movie details page for movie selected. See movies.hbs to see where params is passed on <a></a> tag
 router.get('/movie/:movieId', (req, res, next) => {
-  Movie.findById(req.params.movieId)
+  Movie.findById(req.params.movieId) //Looks into 'Movie' data and finds param ID passed 
     .then(theMovie => {
       res.render('movie-details', { movie: theMovie });
     })
@@ -54,6 +43,7 @@ router.get('/movie/:movieId', (req, res, next) => {
     })
 });
 
+//Create movie database for iteration 3
 // Movie.create(movieData)
 // .then(movie => console.log('The movie is saved and its value is: ', movie))
 // .catch(error =>
