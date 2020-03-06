@@ -49,5 +49,6 @@ router.get('/movie/:movieId', (req, res, next) => {
 // .catch(error =>
 //   console.log('An error happened while looking for movie:', error)
 // );
-
 module.exports = router;
+
+mongoose.connection.close();
