@@ -1,9 +1,9 @@
 <div className='container'>
 <h1 className='row'>Ironhack Cinema</h1>
 <p className='row'>Click on the movie to check the showtimes! </p>    
-<div className='row' style='display:flex; justify-content:space-around'>
+<div className='row' style='display:flex; flex-direction: row; flex-wrap:wrap; justify-content:space-around'>
 {{#each movies}}
-    <div className='col' style='display: flex; flex-direction: column; align-items: center'>
+    <div className='col' style='display: flex; flex-direction: column; align-items: center; margin: 20px'>
     <img src={{this.image}}/>
     <p>{{this.title}}</p>
     <a href="/movie/{{this._id}}">See More</a>
